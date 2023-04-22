@@ -10,7 +10,7 @@ describe 'User visits warehouse details page' do
     )
 
     # Act
-    visit('/')
+    visit(root_path)
     click_on('Aeroporto SP')
 
     # Assert
@@ -31,11 +31,11 @@ describe 'User visits warehouse details page' do
     )
 
     # Act
-    visit('/')
+    visit(root_path)
     click_on('Aeroporto SP')
     click_on('Voltar')
 
     # Assert
-    expect(current_path).to eq('/')
+    expect(current_path).to eq(root_path)
   end
 end
