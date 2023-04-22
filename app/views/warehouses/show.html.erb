@@ -2,10 +2,10 @@
 <h2>Descrição: <%= @warehouse.description %></h2>
 
 <div>
-  <strong>Nome: <%= @warehouse.name %></strong>
-  <span>Cidade: <%= @warehouse.city %></span>
-  <span>Área: <%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</span>
-  <span>Endereço: <%= @warehouse.address %> - CEP: <%= @warehouse.cep %></span>
+  <span><strong>Nome:</strong> <%= @warehouse.name %></span>
+  <span><strong>Cidade:</strong> <%= @warehouse.city %></span>
+  <span><strong>Área:</strong> <%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</span>
+  <span><strong>Endereço:</strong> <%= @warehouse.address %> - CEP: <%= @warehouse.cep %></span>
 </div>
 
 <%= link_to 'Voltar', root_path %>

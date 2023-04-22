@@ -4,9 +4,9 @@
 <% @warehouses.each do |warehouse| %>
   <div>
     <span><%= link_to warehouse.name, warehouse_path(warehouse.id) %></span>
-    <span>Código: <%= warehouse.code %></span>
-    <span>Cidade: <%= warehouse.city %></span>
-    <span><%= number_with_delimiter(warehouse.area, delimiter: '.') %> m²</span>
+    <span><strong>Código:</strong> <%= warehouse.code %></span>
+    <span><strong>Cidade:</strong> <%= warehouse.city %></span>
+    <span><strong>Área: </strong><%= number_with_delimiter(warehouse.area, delimiter: '.') %> m²</span>
   </div>
 <% end %>
 
