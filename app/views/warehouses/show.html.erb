@@ -1,11 +1,23 @@
-<h1>Galpão <%= @warehouse.code %></h1>
-<h2>Descrição: <%= @warehouse.description %></h2>
+<h2>Galpão <%= @warehouse.code %></h2>
+<h3>Descrição: <%= @warehouse.description %></h3>
 
 <div>
-  <span><strong>Nome:</strong> <%= @warehouse.name %></span>
-  <span><strong>Cidade:</strong> <%= @warehouse.city %></span>
-  <span><strong>Área:</strong> <%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</span>
-  <span><strong>Endereço:</strong> <%= @warehouse.address %> - CEP: <%= @warehouse.cep %></span>
+  <dl>
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @warehouse.name %></dd>
+
+    <dt><strong>Código:</strong></dt>
+    <dd><%= @warehouse.code %></dd>
+
+    <dt><strong>Cidade:</strong></dt>
+    <dd><%= @warehouse.city %></dd>
+
+    <dt><strong>Área:</strong></dt>
+    <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
+
+    <dt><strong>Endereço:</strong></dt>
+    <dd><%= @warehouse.address %> - CEP: <%= @warehouse.cep %></dd>
+  </dl>
 </div>
 
 <%= link_to 'Voltar', root_path %>

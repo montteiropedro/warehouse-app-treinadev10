@@ -13,8 +13,16 @@ describe 'User visits the initial page' do
 
   it 'and sees all registered warehouses' do
     # Arrange
-    Warehouse.create(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000)
-    Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', area: 50_000)
+    Warehouse.create(
+      name: 'Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
+      address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
+      area: 60_000
+    )
+    Warehouse.create(
+      name: 'Maceio', description: 'Galpão de Maceio', code: 'MCZ',
+      address: 'Avenida Atlantica, 50', city: 'Maceio', cep: '80000-000',
+      area: 50_000
+    )
 
     # Act
     visit(root_path)

@@ -4,9 +4,9 @@ describe 'User visits warehouse details page' do
   it 'and sees additional information' do
     # Arrange
     Warehouse.create(
-      name: 'Aeroporto SP', code: 'SDU', city: 'Guarulhos', area: 100_000,
-      address: 'Avenida do Aeroporto, 1000', cep: '15000-000',
-      description: 'Galpão destinado para cargas internacionais'
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais', code: 'SDU',
+      address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
+      area: 100_000
     )
 
     # Act
@@ -25,9 +25,9 @@ describe 'User visits warehouse details page' do
   it 'and returns to initial page' do
     # Arrange (pass)
     Warehouse.create(
-      name: 'Aeroporto SP', code: 'SDU', city: 'Guarulhos', area: 100_000,
-      address: 'Avenida do Aeroporto, 1000', cep: '15000-000',
-      description: 'Galpão destinado para cargas internacionais'
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais', code: 'SDU',
+      address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
+      area: 100_000
     )
 
     # Act
