@@ -63,5 +63,13 @@ describe 'User registers a warehouse' do
     expect(current_path).to eq(warehouses_path)
 
     expect(page).to have_content('Galpão não cadastrado.')
+    
+    expect(page).to have_content('Nome não pode ficar em branco')
+    expect(page).to have_content('Descrição não pode ficar em branco')
+    expect(page).to have_content('Código não pode ficar em branco')
+    expect(page).to have_content('Endereço não pode ficar em branco')
+    expect(page).to have_content('Cidade não pode ficar em branco')
+    expect(page).to have_content('CEP não pode ficar em branco')
+    expect(page).to have_content('Área não pode ficar em branco')
   end
 end
