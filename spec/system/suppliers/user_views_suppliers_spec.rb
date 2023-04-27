@@ -12,6 +12,10 @@ describe 'User views all registered suppliers' do
 
     # Assert
     expect(current_path).to eq suppliers_path
+
+    within('h2') do
+      expect(page).to have_content 'Fornecedores'
+    end
   end
 
   it 'and should be successful' do
@@ -33,12 +37,21 @@ describe 'User views all registered suppliers' do
     click_on 'Fornecedores'
 
     # Assert
-    expect(page).to have_content 'Fornecedores'
-
     expect(page).to have_content 'ACME'
     expect(page).to have_content 'Bauru - SP'
 
     expect(page).to have_content 'Spark'
     expect(page).to have_content 'Teresina - PI'
+  end
+
+  it 'and should see a message when there is no supplier registered' do
+    # Arrange (pass)
+
+    # Act
+    visit root_path
+    click_on 'Fornecedores'
+
+    # Assert
+    expect(page).to have_content 'Não existem fornecedores cadastrados.'
   end
 end
