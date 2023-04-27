@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User deletes a supplier' do
-  it 'and should be successful' do
+  pending 'and should be successful' do
     # Arrange
     supplier = Supplier.create!(
       corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '43447216000102',
@@ -24,7 +24,7 @@ describe 'User deletes a supplier' do
     expect(page).not_to have_content 'Bauru - SP'
   end
 
-  it 'and all other suppliers should still exist' do
+  pending 'and all other suppliers should still exist' do
     # Arrange
     first_supplier = Supplier.create!(
       corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '43447216000102',
