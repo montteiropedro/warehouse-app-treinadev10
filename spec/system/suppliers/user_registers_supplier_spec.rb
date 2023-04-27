@@ -21,7 +21,7 @@ describe 'User registers a supplier' do
     expect(page).to have_field 'E-mail'
   end
 
-  it 'should be successful' do
+  it 'and should be successful' do
     # Arrange (pass)
 
     # Act
@@ -42,7 +42,7 @@ describe 'User registers a supplier' do
     expect(page).to have_content 'Fornecedor cadastrado com sucesso.'
   end
 
-  it 'should be unsuccessful with incomplete data' do
+  it 'with incomplete data and should be unsuccessful' do
     # Arrange (pass)
 
     # Act

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User views all registered suppliers' do
-  it 'from menu' do
+  it 'from suppliers page' do
     # Arrange (pass)
 
     # Act
@@ -14,7 +14,7 @@ describe 'User views all registered suppliers' do
     expect(current_path).to eq suppliers_path
   end
 
-  it 'successfully' do
+  it 'and should be successful' do
     # Arrange
     Supplier.create!(
       corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '43447216000102',
