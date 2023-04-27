@@ -1,0 +1,18 @@
+<h2><%= @supplier.corporate_name %></h2>
+
+<div>
+  <dl>
+    <dt><strong>CNPJ:</strong></dt>
+    <dd><%= @supplier.registration_number %></dd>
+
+    <dt><strong>Endereço:</strong></dt>
+    <dd><%= @supplier.full_address %> - <%= @supplier.city %>, <%= @supplier.state %></dd>
+
+    <dt><strong>E-mail:</strong></dt>
+    <dd><%= @supplier.email %></dd>
+  </dl>
+</div>
+
+<%= button_to 'Remover', @supplier, method: :delete %>
+<%= link_to 'Editar', edit_supplier_path(@supplier) %>
+<%= link_to 'Homepage', root_path %>

@@ -18,7 +18,7 @@ describe 'User visits a supplier details page' do
     expect(page).to have_content 'ACME LTDA'
     expect(page).to have_content 'CNPJ: 43447216000102'
     expect(page).to have_content 'Endereço: Av das Palmas, 100 - Bauru, SP'
-    expect(page).to have_content 'Email: contato@acme.com'
+    expect(page).to have_content 'E-mail: contato@acme.com'
   end
 
   it 'and should be able to return to the initial page' do

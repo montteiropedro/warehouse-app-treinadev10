@@ -12,6 +12,7 @@ describe 'User edits a supplier' do
     # Act
     visit root_path
     click_on 'Fornecedores'
+    click_on 'ACME'
     click_on 'Editar'
 
     # Assert
@@ -39,6 +40,7 @@ describe 'User edits a supplier' do
     # Act
     visit root_path
     click_on 'Fornecedores'
+    click_on 'ACME'
     click_on 'Editar'
 
     fill_in 'Endereço', with: 'Av Paulista, 650'
@@ -54,7 +56,7 @@ describe 'User edits a supplier' do
     expect(page).to have_content 'ACME LTDA'
     expect(page).to have_content 'CNPJ: 43447216000102'
     expect(page).to have_content 'Endereço: Av Paulista, 650 - São Paulo, SP'
-    expect(page).to have_content 'Email: contato@acme.com.br'
+    expect(page).to have_content 'E-mail: contato@acme.com.br'
   end
 
   it 'and should keep required fields' do
@@ -68,6 +70,7 @@ describe 'User edits a supplier' do
     # Act
     visit root_path
     click_on 'Fornecedores'
+    click_on 'ACME'
     click_on 'Editar'
 
     fill_in 'Endereço', with: ''
@@ -78,7 +81,7 @@ describe 'User edits a supplier' do
     # Assert
     expect(current_path).to eq supplier_path(supplier.id)
 
-    expect(page).to have_content 'Falha ao atualizado o fornecedor.'
+    expect(page).to have_content 'Falha ao atualizar o fornecedor.'
 
     expect(page).to have_content 'Endereço não pode ficar em branco'
     expect(page).to have_content 'Cidade não pode ficar em branco'

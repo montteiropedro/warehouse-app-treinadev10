@@ -1,0 +1,13 @@
+<h3>Novo Fornecedor</h3>
+
+<% if @supplier.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  
+  <% @supplier.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= render 'form' %>

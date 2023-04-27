@@ -4,6 +4,9 @@ pt-BR:
       warehouse:
         one: 'Galpão'
         other: 'Galpões'
+      supplier:
+        one: 'Fornecedor'
+        other: 'Fornecedores'
     attributes:
       warehouse:
         name: 'Nome'
@@ -13,4 +16,12 @@ pt-BR:
         city: 'Cidade'
         cep: 'CEP'
         area: 'Área'
+      supplier:
+        brand_name: 'Nome Fantasia'
+        corporate_name: 'Razão Social'
+        registration_number: 'CNPJ'
+        full_address: 'Endereço'
+        city: 'Cidade'
+        state: 'Estado'
+        email: 'E-mail'
 
