@@ -18,7 +18,7 @@ describe 'User registers a warehouse' do
     expect(page).to have_field 'Área'
   end
 
-  it 'successfully' do
+  it 'and should be successful' do
     # Arrange
 
     # Act
@@ -44,7 +44,7 @@ describe 'User registers a warehouse' do
     expect(page).to have_content '32.000 m²'
   end
 
-  it 'with incomplete data' do
+  it 'with incomplete data and should be unsuccessful' do
     # Arrange
     visit root_path
     click_on 'Cadastrar Galpão'

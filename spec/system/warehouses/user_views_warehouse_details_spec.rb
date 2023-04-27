@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User visits warehouse details page' do
-  it 'and sees additional information' do
+  it 'and should see additional information' do
     # Arrange
     Warehouse.create(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais', code: 'SDU',
@@ -22,7 +22,7 @@ describe 'User visits warehouse details page' do
     expect(page).to have_content 'Descrição: Galpão destinado para cargas internacionais'
   end
 
-  it 'and returns to initial page' do
+  it 'and should be able to return to the initial page' do
     # Arrange (pass)
     Warehouse.create(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais', code: 'SDU',

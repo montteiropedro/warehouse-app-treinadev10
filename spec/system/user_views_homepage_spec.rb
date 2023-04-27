@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User visits the initial page' do
-  it 'and sees the app name "Galpões & Estoque"' do
+  it 'and should see the app name "Galpões & Estoque"' do
     # Arrange (pass)
 
     # Act
@@ -11,7 +11,7 @@ describe 'User visits the initial page' do
     expect(page).to have_content 'Galpões & Estoque'
   end
 
-  it 'and sees all registered warehouses' do
+  it 'and should see all registered warehouses' do
     # Arrange
     Warehouse.create(
       name: 'Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User deletes a warehouse' do
-  it 'successfully' do
+  it 'and should be successful' do
     # Arrange
     warehouse = Warehouse.create!(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
@@ -25,7 +25,7 @@ describe 'User deletes a warehouse' do
     expect(page).not_to have_content 'Área: 100.000 m²'
   end
 
-  it 'should not delete all warehouses at once' do
+  it 'and all other warehouses should still exist' do
     # Arrange
     first_warehouse = Warehouse.create!(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais de SP.', code: 'SDU',

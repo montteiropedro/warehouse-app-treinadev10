@@ -28,7 +28,7 @@ describe 'User edits a warehouse' do
     expect(page).to have_field 'Área', with: '100000'
   end
 
-  it 'successfully' do
+  it 'and should be successful' do
     # Arrange
     warehouse = Warehouse.create!(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
@@ -61,7 +61,7 @@ describe 'User edits a warehouse' do
     expect(page).to have_content 'Área: 200.000 m²'
   end
 
-  it 'keeps required fields' do
+  it 'and should keep required fields' do
     # Arrange
     warehouse = Warehouse.create!(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
