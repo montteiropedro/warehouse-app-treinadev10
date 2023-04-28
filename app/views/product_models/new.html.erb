@@ -1,0 +1,13 @@
+<h3>Novo Modelo de Produto</h3>
+
+<% if @product_model.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  
+  <% @product_model.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= render 'form' %>

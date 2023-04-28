@@ -112,7 +112,7 @@ RSpec.describe Supplier, type: :model do
     context 'uniqueness' do
       it 'should return false when registration_number is alredy in use' do
         # Arrange
-        first_supplier = Supplier.create(
+        first_supplier = Supplier.create!(
           corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '43447216000102',
           full_address: 'Av das Palmas, 100', city: 'Bauru', state: 'SP',
           email: 'contato@acme.com'

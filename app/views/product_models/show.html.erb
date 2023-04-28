@@ -1,0 +1,25 @@
+<h2><%= @product_model.name %></h2>
+
+<div>
+  <dl>
+    <dt><strong>SKU:</strong></dt>
+    <dd><%= @product_model.sku %></dd>
+
+    <dt><strong>Peso:</strong></dt>
+    <dd><%= number_with_delimiter(@product_model.weight, delimiter: '.') %>g</dd>
+
+    <dt><strong>Largura:</strong></dt>
+    <dd><%= number_with_delimiter(@product_model.width, delimiter: '.') %>cm</dd>
+
+    <dt><strong>Altura:</strong></dt>
+    <dd><%= number_with_delimiter(@product_model.height, delimiter: '.') %>cm</dd>
+
+    <dt><strong>Profundidade:</strong></dt>
+    <dd><%= number_with_delimiter(@product_model.depth, delimiter: '.') %>cm</dd>
+
+    <dt><strong>Fornecedor:</strong></dt>
+    <dd><%= @product_model.supplier.brand_name %></dd>
+  </dl>
+</div>
+
+<%# <%= link_to 'Editar', edit_product_model_path(@product_model) %>
