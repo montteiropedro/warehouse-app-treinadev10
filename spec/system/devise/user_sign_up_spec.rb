@@ -40,6 +40,13 @@ describe 'User registration (devise)' do
     expect(current_path).to eq root_path
 
     expect(page).to have_content 'Cadastro realizado com sucesso.'
+
+    expect(User.last.name).to eq 'John Doe'
+
+    within('nav') do
+      expect(page).to have_content 'John Doe'
+      expect(page).to have_content 'Sair'
+    end
   end
 
   it 'should be unsuccessful with incorrect data' do
@@ -52,7 +59,7 @@ describe 'User registration (devise)' do
 
     within('form') do
       fill_in 'Nome', with: 'John Doe'
-      fill_in 'E-mail', with: 'john@email.com'
+      fill_in 'E-mail', with: 'johnemail.com'
       fill_in 'Senha', with: 'pass1'
       fill_in 'Confirme sua senha', with: 'pass1'
       click_on 'Cadastrar'

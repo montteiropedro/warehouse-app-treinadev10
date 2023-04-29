@@ -6,7 +6,6 @@ pt-BR:
         other: Usuários
     attributes:
       user:
-        name: Nome
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
