@@ -17,8 +17,8 @@
         <%= link_to 'Fornecedores', suppliers_path %> |
         <%= link_to 'Modelos de Produtos', product_models_path %> |
         <% if user_signed_in? %>
-          <div style="display: inline-flex; gap: .5rem;">
-            <%= current_user.name %>
+          <div id='user-menu'>
+            <span><%= current_user.name %></span>
             <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
           </div>
         <% else %>
