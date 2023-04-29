@@ -26,7 +26,7 @@ describe 'User registration (devise)' do
     # Act
     visit root_path
     click_on 'Entrar'
-    click_on 'Criar conta'
+    click_on 'Criar uma conta'
 
     within('form') do
       fill_in 'Nome', with: 'John Doe'
@@ -39,7 +39,7 @@ describe 'User registration (devise)' do
     # Assert
     expect(current_path).to eq root_path
 
-    expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
+    expect(page).to have_content 'Cadastro realizado com sucesso.'
   end
 
   it 'should be unsuccessful with incorrect data' do
@@ -48,7 +48,7 @@ describe 'User registration (devise)' do
     # Act
     visit root_path
     click_on 'Entrar'
-    click_on 'Criar conta'
+    click_on 'Criar uma conta'
 
     within('form') do
       fill_in 'Nome', with: 'John Doe'
@@ -70,7 +70,7 @@ describe 'User registration (devise)' do
     # Act
     visit root_path
     click_on 'Entrar'
-    click_on 'Criar conta'
+    click_on 'Criar uma conta'
 
     within('form') do
       fill_in 'Nome', with: ''
