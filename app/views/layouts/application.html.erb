@@ -15,13 +15,22 @@
       <nav>
         <%= link_to 'Homepage', root_path %> |
         <%= link_to 'Fornecedores', suppliers_path %> |
-        <%= link_to 'Modelos de Produtos', product_models_path %>
+        <%= link_to 'Modelos de Produtos', product_models_path %> |
+        <% if user_signed_in? %>
+          <div style="display: inline-flex; gap: .5rem;">
+            <%= current_user.name %>
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+          </div>
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_path %>
+        <% end %>
       </nav>
     </header>
     
     <main>
       <div>
-        <%= flash[:notice] %>
+        <%= notice %>
+        <%= alert %>
       </div>
 
       <%= yield %>
