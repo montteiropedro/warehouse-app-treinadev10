@@ -49,7 +49,7 @@ describe 'User registration (devise)' do
     end
   end
 
-  it 'should be unsuccessful with incorrect data' do
+  it 'should not be successful with incorrect data' do
     # Arrange (pass)
 
     # Act
@@ -71,7 +71,7 @@ describe 'User registration (devise)' do
     expect(page).to have_content 'Não foi possível salvar usuário'
   end
 
-  it 'should be unsuccessful with incomplete data' do
+  it 'should not be successful with incomplete data' do
     # Arrange (pass)
 
     # Act

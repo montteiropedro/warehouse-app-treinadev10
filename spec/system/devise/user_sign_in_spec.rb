@@ -43,7 +43,7 @@ describe 'User session (devise)' do
       end
     end
 
-    it 'should be unsuccessful with incorrect data' do
+    it 'should not be successful with incorrect data' do
       # Arrange
       User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
 
@@ -68,7 +68,7 @@ describe 'User session (devise)' do
       end
     end
 
-    it 'should be unsuccessful with incomplete data' do
+    it 'should not be successful with incomplete data' do
       # Arrange
       User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
 
