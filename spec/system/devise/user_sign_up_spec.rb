@@ -7,7 +7,7 @@ describe 'User registration (devise)' do
     # Act
     visit root_path
     click_on 'Entrar'
-    click_on 'Criar conta'
+    click_on 'Criar uma conta'
 
     # Assert
     expect(current_path).to eq new_user_registration_path
