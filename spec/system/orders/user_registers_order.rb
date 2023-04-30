@@ -56,17 +56,17 @@ describe 'User registers a order' do
         click_on 'Registrar Pedido'
       end
 
-      select warehouse.name, from: 'Galpão Destino'
-      select supplier.corporate_name, from: 'Fornecedor'
+      select 'SDU | Galpão Rio', from: 'Galpão Destino'
+      select 'Samsung | Samsung Electronics LTDA | CNPJ: 43447216000102', from: 'Fornecedor'
       fill_in 'Data Prevista de Entrega', with: '20/12/2023'
       click_on 'Registrar'
 
       # Assert
       expect(page).to have_content 'Pedido registrado com sucesso.'
 
-      expect(page).to have_content "Usuário Responsável: #{user.name} <#{user.email}>"
-      expect(page).to have_content "Galpão Destino: #{warehouse.name}"
-      expect(page).to have_content "Fornecedor: #{supplier.corporate_name}"
+      expect(page).to have_content "Usuário Responsável: John Doe <john@email.com>"
+      expect(page).to have_content "Galpão Destino: SDU | Galpão Rio"
+      expect(page).to have_content "Fornecedor: Samsung Electronics LTDA"
       expect(page).to have_content "Data Prevista de Entrega: 20/12/2023"
     end
 

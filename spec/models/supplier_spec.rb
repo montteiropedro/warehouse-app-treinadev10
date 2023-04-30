@@ -149,4 +149,20 @@ RSpec.describe Supplier, type: :model do
       end
     end
   end
+
+  describe '#description' do
+    it 'should return a string having brand and corporate name and registration number' do
+      # Arrange
+      supplier = Supplier.new(
+        corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
+        full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
+        email: 'sac@samsung.com'
+      )
+      # Act
+      result = supplier.description
+
+      # Assert
+      expect(result).to eq 'Samsung | Samsung Electronics LTDA | CNPJ: 43447216000102'
+    end
+  end
 end
