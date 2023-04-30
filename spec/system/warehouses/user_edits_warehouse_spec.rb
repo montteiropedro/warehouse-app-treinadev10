@@ -88,4 +88,22 @@ describe 'User edits a warehouse' do
     expect(page).to have_content 'Descrição não pode ficar em branco'
     expect(page).to have_content 'Código não pode ficar em branco'
   end
+
+  it 'and should be able to return to the initial page' do
+    # Arrange
+    warehouse = Warehouse.create!(
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
+      address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
+      area: 100_000
+    )
+
+    # Act
+    visit root_path
+    click_on 'Aeroporto SP'
+    click_on 'Editar'
+    click_on 'Galpões & Estoque'
+
+    # Assert
+    expect(current_path).to eq root_path
+  end
 end

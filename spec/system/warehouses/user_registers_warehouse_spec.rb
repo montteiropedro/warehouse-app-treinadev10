@@ -72,4 +72,16 @@ describe 'User registers a warehouse' do
     expect(page).to have_content 'CEP não pode ficar em branco'
     expect(page).to have_content 'Área não pode ficar em branco'
   end
+
+  it 'and should be able to return to the initial page' do
+    # Arrange (pass)
+
+    # Act
+    visit root_path
+    click_on 'Cadastrar Galpão'
+    click_on 'Galpões & Estoque'
+
+    # Assert
+    expect(current_path).to eq root_path
+  end
 end

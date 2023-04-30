@@ -33,7 +33,7 @@ describe 'User visits a supplier details page' do
     visit root_path
     click_on 'Fornecedores'
     click_on 'ACME'
-    click_on 'Homepage'
+    click_on 'Galpões & Estoque'
 
     # Assert
     expect(current_path).to eq root_path

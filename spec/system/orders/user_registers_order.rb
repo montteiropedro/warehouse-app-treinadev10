@@ -103,6 +103,22 @@ describe 'User registers a order' do
 
       expect(page).to have_content 'Falha ao registrar o pedido.'
     end
+
+    it 'should be able to return to the initial page' do
+      # Arrange
+      user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
+
+      # Act
+      login_as(user)
+      visit root_path
+      within('nav') do
+        click_on 'Registrar Pedido'
+      end
+      click_on 'Galpões & Estoque'
+  
+      # Assert
+      expect(current_path).to eq root_path
+    end
   end
 
   context 'when unauthenticated' do

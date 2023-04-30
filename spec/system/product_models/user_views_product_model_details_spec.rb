@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User views all registered product models' do
+describe 'User views a product model details page' do
   context 'when authenticated' do
     it 'should see additional information' do
       # Arrange
@@ -57,7 +57,7 @@ describe 'User views all registered product models' do
       visit root_path
       click_on 'Modelos de Produtos'
       click_on 'TV 32'
-      click_on 'Homepage'
+      click_on 'Galpões & Estoque'
   
       # Assert
       expect(current_path).to eq root_path

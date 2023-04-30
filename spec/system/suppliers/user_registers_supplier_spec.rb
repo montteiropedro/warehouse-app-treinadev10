@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe 'User registers a supplier' do
-  it 'from suppliers page' do
+  it 'from navigation menu' do
     # Arrange (pass)
     
     # Act
     visit root_path
-    click_on 'Fornecedores'
+    within('nav') do
+      click_on 'Fornecedores'
+    end
     click_on 'Cadastrar Fornecedor'
 
     # Assert
@@ -71,5 +73,18 @@ describe 'User registers a supplier' do
     expect(page).to have_content 'Cidade não pode ficar em branco'
     expect(page).to have_content 'Estado não pode ficar em branco'
     expect(page).to have_content 'E-mail não pode ficar em branco'
+  end
+
+  it 'and should be able to return to the initial page' do
+    # Arrange (pass)
+
+    # Act
+    visit root_path
+    click_on 'Fornecedores'
+    click_on 'Cadastrar Fornecedor'
+    click_on 'Galpões & Estoque'
+
+    # Assert
+    expect(current_path).to eq root_path
   end
 end

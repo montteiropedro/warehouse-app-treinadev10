@@ -23,7 +23,7 @@ describe 'User visits warehouse details page' do
   end
 
   it 'and should be able to return to the initial page' do
-    # Arrange (pass)
+    # Arrange
     Warehouse.create(
       name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais', code: 'SDU',
       address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
@@ -33,7 +33,7 @@ describe 'User visits warehouse details page' do
     # Act
     visit root_path
     click_on 'Aeroporto SP'
-    click_on 'Voltar'
+    click_on 'Galpões & Estoque'
 
     # Assert
     expect(current_path).to eq root_path

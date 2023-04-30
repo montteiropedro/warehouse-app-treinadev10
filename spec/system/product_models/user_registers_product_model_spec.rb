@@ -8,7 +8,9 @@ describe 'User registers a product model' do
     # Act
     login_as(user)
     visit root_path
-    click_on 'Modelos de Produtos'
+    within('nav') do
+      click_on 'Modelos de Produtos'
+    end
     click_on 'Cadastrar Modelo de Produto'
 
     # Assert
@@ -88,6 +90,21 @@ describe 'User registers a product model' do
       expect(page).to have_content 'Nome não pode ficar em branco'
       expect(page).to have_content 'SKU não pode ficar em branco'
       expect(page).to have_content 'Fornecedor é obrigatório(a)'
+    end
+
+    it 'should be able to return to the initial page' do
+      # Arrange
+      user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
+
+      # Act
+      login_as(user)
+      visit root_path
+      click_on 'Modelos de Produtos'
+      click_on 'Cadastrar Modelo de Produto'
+      click_on 'Galpões & Estoque'
+  
+      # Assert
+      expect(current_path).to eq root_path
     end
   end
 
