@@ -1,0 +1,7 @@
+pt-BR:
+  views:
+    product_models:
+      new_product_model: 'Novo Modelo de Produto'
+      edit_product_model: 'Editar Modelo de Produto'
+      delete_product_model: 'Remover Modelo de Produto'
+

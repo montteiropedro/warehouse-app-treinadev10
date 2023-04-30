@@ -1,0 +1,9 @@
+pt-BR:
+  views:
+    suppliers:
+      new_supplier: 'Novo Fornecedor'
+      edit_supplier: 'Editar Fornecedor'
+      delete_supplier: 'Remover Fornecedor'
+      name: 'Nome'
+      localization: 'Localização'
+

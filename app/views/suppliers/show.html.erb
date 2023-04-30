@@ -2,13 +2,13 @@
 
 <div>
   <dl>
-    <dt><strong>CNPJ:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.supplier.registration_number' %>:</strong></dt>
     <dd><%= @supplier.registration_number %></dd>
 
-    <dt><strong>Endereço:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.supplier.full_address' %>:</strong></dt>
     <dd><%= @supplier.full_address %> - <%= @supplier.city %>, <%= @supplier.state %></dd>
 
-    <dt><strong>E-mail:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.supplier.email' %>:</strong></dt>
     <dd><%= @supplier.email %></dd>
   </dl>
 </div>

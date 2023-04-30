@@ -1,21 +1,21 @@
-<h2>Galpão <%= @warehouse.code %></h2>
-<h3>Descrição: <%= @warehouse.description %></h3>
+<h2><%= I18n.t 'activerecord.models.warehouse.one' %> <%= @warehouse.code %></h2>
+<h3><%= I18n.t 'activerecord.attributes.warehouse.description' %>: <%= @warehouse.description %></h3>
 
 <div>
   <dl>
-    <dt><strong>Nome:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.name' %>:</strong></dt>
     <dd><%= @warehouse.name %></dd>
 
-    <dt><strong>Código:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.code' %>:</strong></dt>
     <dd><%= @warehouse.code %></dd>
 
-    <dt><strong>Cidade:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.city' %>:</strong></dt>
     <dd><%= @warehouse.city %></dd>
 
-    <dt><strong>Área:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.area' %>:</strong></dt>
     <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
 
-    <dt><strong>Endereço:</strong></dt>
+    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.address' %>:</strong></dt>
     <dd><%= @warehouse.address %> - CEP: <%= @warehouse.cep %></dd>
   </dl>
 </div>

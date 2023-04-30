@@ -1,0 +1,6 @@
+pt-BR:
+  views:
+    orders:
+      new_order: 'Novo Pedido'
+      edit_order: 'Editar Pedido'
+      delete_order: 'Remover Pedido'

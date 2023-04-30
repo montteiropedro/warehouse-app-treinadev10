@@ -1,0 +1,7 @@
+pt-BR:
+  views:
+    warehouses:
+      new_warehouse: 'Novo Galpão'
+      edit_warehouse: 'Editar Galpão'
+      delete_warehouse: 'Remover Galpão'
+

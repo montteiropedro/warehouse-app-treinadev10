@@ -1,4 +1,4 @@
-<h2>Modelos de Produtos</h2>
+<h2><%= I18n.t 'activerecord.models.product_model.other' %></h2>
 
 <%= link_to 'Cadastrar Modelo de Produto', new_product_model_path %>
 <%= link_to 'Voltar', root_path %>
@@ -9,10 +9,10 @@
       <h3><%= link_to product_model.name, product_model %></h3>
 
       <dl>
-        <dt>SKU:</dt>
+        <dt><%= I18n.t 'activerecord.attributes.product_model.sku' %>:</dt>
         <dd><%= product_model.sku %></dd>
 
-        <dt>Nome:</dt>
+        <dt><%= I18n.t 'activerecord.attributes.product_model.name' %>:</dt>
         <dd><%= product_model.supplier.brand_name %></dd>
       </dl>
     </div>
