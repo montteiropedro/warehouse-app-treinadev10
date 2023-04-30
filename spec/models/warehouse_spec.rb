@@ -140,4 +140,20 @@ RSpec.describe Warehouse, type: :model do
       end
     end
   end
+
+  describe '#full_description' do
+    it 'should return a string having name and code' do
+      # Arrange
+      warehouse = Warehouse.new(
+        name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
+        address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
+        area: 60_000
+      )
+      # Act
+      result = warehouse.full_description
+
+      # Assert
+      expect(result).to eq 'SDU | Galpão Rio'
+    end
+  end
 end
