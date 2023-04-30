@@ -9,6 +9,7 @@ describe 'User visits the initial page' do
 
     # Assert
     expect(page).to have_content 'Galpões & Estoque'
+    expect(page).to have_link 'Galpões & Estoque', href: root_path
   end
 
   it 'and should see all registered warehouses' do
