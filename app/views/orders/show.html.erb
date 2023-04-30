@@ -1,0 +1,19 @@
+<h2>Detalhes Sobre o Pedido</h2>
+
+<div>
+  <dl>
+    <dt><strong>Galpão Destino:</strong></dt>
+    <dd><%= @order.warehouse.name %></dd>
+
+    <dt><strong>Fornecedor:</strong></dt>
+    <dd><%= @order.supplier.corporate_name %></dd>
+
+    <dt><strong>Data Prevista de Entrega:</strong></dt>
+    <dd><%= I18n.localize(@order.estimated_delivery_date) %></dd>
+
+    <dt><strong>Usuário Responsável:</strong></dt>
+    <dd><%= @order.user.name %> &lt;<%= @order.user.email %>&gt;</dd>
+  </dl>
+</div>
+
+<%# <%= link_to 'Editar', edit_product_model_path(@product_model) %>

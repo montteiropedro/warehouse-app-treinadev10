@@ -7,17 +7,17 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Users
-User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
+user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
 
 # Warehouses
-Warehouse.create!(
-  name: 'Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
+rio_warehouse = Warehouse.create!(
+  name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
   address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
   area: 60_000
 )
 
 Warehouse.create!(
-  name: 'Maceio', description: 'Galpão de Maceio', code: 'MCZ',
+  name: 'Galpão Maceio', description: 'Galpão de cidade de Maceio', code: 'MCZ',
   address: 'Avenida Atlantica, 50', city: 'Maceio', cep: '80000-000',
   area: 50_000
 )
@@ -46,4 +46,9 @@ ProductModel.create!(
   name: 'SoundBar 7.1 Surround', sku: 'SB71-SAMSU-NOIZ501SA',
   weight: 3_000, width: 80, height: 15, depth: 20,
   supplier: samsung_supplier
+)
+
+# Orders
+Order.create!(
+  warehouse: rio_warehouse, supplier: samsung_supplier, user: user, estimated_delivery_date: '20/12/2023' 
 )
