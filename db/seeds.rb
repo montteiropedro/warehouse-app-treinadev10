@@ -50,5 +50,5 @@ ProductModel.create!(
 
 # Orders
 Order.create!(
-  warehouse: rio_warehouse, supplier: samsung_supplier, user: user, estimated_delivery_date: '20/12/2023' 
+  warehouse: rio_warehouse, supplier: samsung_supplier, user: user, estimated_delivery_date: '20/12/2023'
 )

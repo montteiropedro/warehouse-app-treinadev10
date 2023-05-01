@@ -49,6 +49,8 @@ describe 'User registers a order' do
         email: 'contato@lg.com'
       )
 
+      allow(SecureRandom).to receive(:alphanumeric).and_return('ABCDEFGHIJ')
+
       # Act
       login_as(user)
       visit root_path
@@ -64,10 +66,11 @@ describe 'User registers a order' do
       # Assert
       expect(page).to have_content 'Pedido registrado com sucesso.'
 
+      expect(page).to have_content "Pedido ABCDEFGHIJ"
       expect(page).to have_content "Usuário Responsável: John Doe <john@email.com>"
+      expect(page).to have_content "Data Prevista de Entrega: 20/12/2023"
       expect(page).to have_content "Galpão Destino: SDU | Galpão Rio"
       expect(page).to have_content "Fornecedor: Samsung Electronics LTDA"
-      expect(page).to have_content "Data Prevista de Entrega: 20/12/2023"
     end
 
     it 'should not be successful with incomplete data' do
