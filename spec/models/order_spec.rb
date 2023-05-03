@@ -1,158 +1,80 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  describe 'code' do
-    it 'should be random and made automatically' do
-      # Arrange
-      user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
-      warehouse = Warehouse.create!(
-        name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
-        address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
-        area: 60_000
-      )
-
-      supplier = Supplier.create!(
-        corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
-        full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
-        email: 'sac@samsung.com'
-      )
-
-      order = Order.new(
-        user: user, warehouse: warehouse, supplier: supplier,
-        estimated_delivery_date: '2023-12-20'
-      )
-
-      # Act
-      order.save!
-      result = order.code
-
-      # Assert
-      expect(result).not_to be_empty
-      expect(result.size).to eq 10
-    end
-
-    it 'should be unique' do
-      # Arrange
-      user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
-      warehouse = Warehouse.create!(
-        name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
-        address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
-        area: 60_000
-      )
-
-      supplier = Supplier.create!(
-        corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
-        full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
-        email: 'sac@samsung.com'
-      )
-
-      first_order = Order.create!(
-        user: user, warehouse: warehouse, supplier: supplier,
-        estimated_delivery_date: '2023-12-20'
-      )
-      second_order = Order.new(
-        user: user, warehouse: warehouse, supplier: supplier,
-        estimated_delivery_date: '2023-12-23'
-      )
-
-      # Act
-      second_order.save!
-
-      # Assert
-      expect(second_order.code).not_to eq first_order.code
-    end
-
-    it 'should not be null' do
-      # Arrange
-      user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
-      warehouse = Warehouse.create!(
-        name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
-        address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
-        area: 60_000
-      )
-
-      supplier = Supplier.create!(
-        corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
-        full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
-        email: 'sac@samsung.com'
-      )
-
-      order = Order.new(
-        user: user, warehouse: warehouse, supplier: supplier,
-        estimated_delivery_date: '2023-12-20'
-      )
-
-      # Act
-      result = order.valid?
-
-      # Assert
-      expect(result).to be true
-    end
-  end
-
   describe '#valid?' do
-    context 'presence' do
-      it 'should return false when estimated_delivery_date is empty' do
+    context 'code' do
+      it 'should be random and made automatically' do
         # Arrange
-        user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
-        warehouse = Warehouse.create!(
-          name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
-          address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
-          area: 60_000
-        )
-
-        supplier = Supplier.create!(
-          corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
-          full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
-          email: 'sac@samsung.com'
-        )
-
-        order = Order.new(
-          user: user, warehouse: warehouse, supplier: supplier,
-          estimated_delivery_date: ''
-        )
-
+        order = Order.new
+  
         # Act
-        result = order.valid?
-
+        order.valid?
+  
         # Assert
-        expect(result).to eq false
+        expect(order.code).not_to be_empty
+        expect(order.code.size).to eq 10
+      end
+  
+      it 'should be unique' do
+        # Arrange
+        first_order = Order.new
+        second_order = Order.new
+  
+        # Act
+        first_order.valid?
+        second_order.valid?
+  
+        # Assert
+        expect(second_order.code).not_to eq first_order.code
       end
     end
 
-    context 'comparison' do
-      it 'should return false when estimated_delivery_date is not a future date' do
+    context 'estimated_delivery_date' do
+      it 'should not be empty' do
         # Arrange
-        user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
-        warehouse = Warehouse.create!(
-          name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
-          address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
-          area: 60_000
-        )
-
-        supplier = Supplier.create!(
-          corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
-          full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
-          email: 'sac@samsung.com'
-        )
-
-        date = Date.today
-        
-        order = Order.new(
-          user: user, warehouse: warehouse, supplier: supplier,
-          estimated_delivery_date: date
-        )
+        order = Order.new(estimated_delivery_date: '')
 
         # Act
-        result = order.valid?
+        order.valid?
 
         # Assert
-        expect(result).to eq false
+        expect(order.errors.include? :estimated_delivery_date).to eq true
+        expect(order.errors[:estimated_delivery_date].include? 'não pode ficar em branco').to eq true
+      end
+
+      it 'should not be in the past' do
+        # Arrange
+        order = Order.new(estimated_delivery_date: 1.day.ago)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :estimated_delivery_date).to eq true
+        expect(order.errors[:estimated_delivery_date].include? 'precisa ser futura').to eq true
+      end
+
+      it 'should not be today' do
+        # Arrange
+        order = Order.new(estimated_delivery_date: Date.today)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :estimated_delivery_date).to eq true
+        expect(order.errors[:estimated_delivery_date].include? 'precisa ser futura').to eq true
+      end
+
+      it 'should be in the future' do
+        # Arrange
+        order = Order.new(estimated_delivery_date: 1.day.from_now)
+
+        # Act
+        order.valid?
+
+        # Assert
+        expect(order.errors.include? :estimated_delivery_date).to eq false
       end
     end
   end

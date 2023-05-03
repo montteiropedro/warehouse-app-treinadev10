@@ -7,8 +7,8 @@ class Order < ApplicationRecord
 
   before_validation :set_code
 
-  validates :code, presence: true
-  validates :estimated_delivery_date, comparison: { greater_than: Date.today }
+  validates :code, :estimated_delivery_date, presence: true
+  validates :estimated_delivery_date, comparison: { greater_than: Date.today, message: 'precisa ser futura' }
 
   private
 
