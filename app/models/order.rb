@@ -1,6 +1,4 @@
 class Order < ApplicationRecord
-  require 'securerandom'
-
   belongs_to :warehouse
   belongs_to :supplier
   belongs_to :user

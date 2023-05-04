@@ -1,0 +1,26 @@
+<h2><%= t '.title' %>: <%= @code %></h2>
+
+<%= link_to 'Voltar', root_path %>
+
+<% if @orders.any? %>
+  <span><%= @orders.size %> <%= t('.count_message', count: @orders.size) %></span>
+
+  <% @orders.each do |o| %>
+    <div>
+      <%= link_to o do %>
+        <h3>Pedido <%= o.code %></h3>
+      <% end %>
+
+      <dl>
+        <dt><%= t 'activerecord.attributes.order.warehouse' %>:</dt>
+        <dd><%= o.warehouse.full_description %></dd>
+
+        <dt><%= t 'activerecord.attributes.order.supplier' %>:</dt>
+        <dd><%= o.supplier.corporate_name %></dd>
+      </dl>
+    </div>
+  <% end %>
+<% else %>
+  <span><%= t '.not_found_message' %></span>
+<% end %>
+

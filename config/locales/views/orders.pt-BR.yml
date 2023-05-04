@@ -1,6 +1,14 @@
 pt-BR:
-  views:
-    orders:
+  orders:
+    new:
       new_order: 'Novo Pedido'
+    edit:
       edit_order: 'Editar Pedido'
+    destroy:
       delete_order: 'Remover Pedido'
+    search:
+      title: 'Resultado da busca por'
+      count_message:
+        one: 'pedido encontrado.'
+        other: 'pedidos encontrados.'
+      not_found_message: 'Não encontramos seu pedido.'
