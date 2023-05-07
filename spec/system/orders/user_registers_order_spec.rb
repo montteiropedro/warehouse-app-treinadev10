@@ -61,7 +61,7 @@ describe 'User registers a order' do
       select 'SDU | Galpão Rio', from: 'Galpão Destino'
       select 'Samsung | Samsung Electronics LTDA | CNPJ: 43447216000102', from: 'Fornecedor'
       fill_in 'Data Prevista de Entrega', with: '20/12/2023'
-      click_on 'Registrar'
+      click_on 'Enviar'
 
       # Assert
       expect(page).to have_content 'Pedido registrado com sucesso.'
@@ -99,7 +99,7 @@ describe 'User registers a order' do
       select 'Por favor selecione', from: 'Galpão Destino'
       select 'Por favor selecione', from: 'Fornecedor'
       fill_in 'Data Prevista de Entrega', with: ''
-      click_on 'Registrar'
+      click_on 'Enviar'
 
       # Assert
       expect(current_path).to eq orders_path

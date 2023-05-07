@@ -1,3 +1,5 @@
 <h2><%= t 'activerecord.models.order.one' %> <%= @order.code %></h2>
 
 <%= render @order %>
+
+<%= link_to 'Editar', edit_order_path(@order) %>
