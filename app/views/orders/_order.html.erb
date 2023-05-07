@@ -1,0 +1,13 @@
+<dl>
+  <dt><strong><%= t 'activerecord.attributes.order.user' %>:</strong></dt>
+  <dd><%= order.user.description %></dd>
+
+  <dt><strong><%= t 'activerecord.attributes.order.warehouse' %>:</strong></dt>
+  <dd><%= order.warehouse.full_description %></dd>
+
+  <dt><strong><%= t 'activerecord.attributes.order.supplier' %>:</strong></dt>
+  <dd><%= order.supplier.corporate_name %></dd>
+
+  <dt><strong><%= t 'activerecord.attributes.order.estimated_delivery_date' %>:</strong></dt>
+  <dd><%= l(order.estimated_delivery_date) %></dd>
+</dl>

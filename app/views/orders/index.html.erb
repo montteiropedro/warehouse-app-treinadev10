@@ -1,0 +1,19 @@
+<h2><%= I18n.t 'activerecord.models.order.other' %></h2>
+
+<%= link_to 'Cadastrar Pedido', new_order_path %>
+<%= link_to 'Voltar', root_path %>
+
+<% if @orders.any? %>
+  <% @orders.each do |order| %>
+    <div>
+      <%= link_to order do %>
+        <h3><%= t('activerecord.models.order.one') %> <%= order.code %></h3>
+      <% end %>
+      
+      <%= render order %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Não existem modelos de produtos cadastrados.</p>
+<% end %>
+
