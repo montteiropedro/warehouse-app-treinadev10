@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+
+    if @order.user != current_user
+      redirect_to root_path, alert: 'Você não possui acesso a esse pedido.'
+    end
   end
 
   def new
