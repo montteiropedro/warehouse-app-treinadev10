@@ -16,7 +16,6 @@ describe 'User views own orders' do
     # Arrange
     john = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
     steve = User.create!(name: 'Steve Gate', email: 'steve@email.com', password: 'password123')
-
     warehouse = Warehouse.create!(
       name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
       address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
@@ -27,15 +26,17 @@ describe 'User views own orders' do
       full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
       email: 'sac@samsung.com'
     )
-
     first_order = Order.create!(
-      warehouse: warehouse, supplier: supplier, user: john, estimated_delivery_date: 10.days.from_now
+      warehouse: warehouse, supplier: supplier, user: john,
+      estimated_delivery_date: 10.days.from_now, status: :pending
     )
     second_order = Order.create!(
-      warehouse: warehouse, supplier: supplier, user: john, estimated_delivery_date: 1.week.from_now
+      warehouse: warehouse, supplier: supplier, user: john,
+      estimated_delivery_date: 1.week.from_now, status: :delivered
     )
     third_order = Order.create!(
-      warehouse: warehouse, supplier: supplier, user: steve, estimated_delivery_date: 15.days.from_now
+      warehouse: warehouse, supplier: supplier, user: steve,
+      estimated_delivery_date: 15.days.from_now, status: :canceled
     )
 
     # Act
@@ -45,14 +46,16 @@ describe 'User views own orders' do
 
     # Assert
     expect(page).to have_content first_order.code
+    expect(page).to have_content 'Situação do Pedido: Pendente'
     expect(page).to have_content second_order.code
+    expect(page).to have_content 'Situação do Pedido: Entregue'
     expect(page).not_to have_content third_order.code
+    expect(page).not_to have_content 'Situação do Pedido: Cancelado'
   end
 
   it 'and visits a orders details page' do
     # Arrange
     john = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
     warehouse = Warehouse.create!(
       name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
       address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
@@ -63,9 +66,9 @@ describe 'User views own orders' do
       full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
       email: 'sac@samsung.com'
     )
-
     order = Order.create!(
-      warehouse: warehouse, supplier: supplier, user: john, estimated_delivery_date: 10.days.from_now
+      warehouse: warehouse, supplier: supplier, user: john,
+      estimated_delivery_date: 10.days.from_now, status: :pending
     )
 
     # Act
@@ -81,13 +84,13 @@ describe 'User views own orders' do
     expect(page).to have_content "Data Prevista de Entrega: #{formatted_date}"
     expect(page).to have_content "Galpão Destino: SDU | Galpão Rio"
     expect(page).to have_content "Fornecedor: Samsung Electronics LTDA"
+    expect(page).to have_content 'Situação do Pedido: Pendente'
   end
 
   it 'and cannot se a order he does not own' do
     # Arrange
     john = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
     steve = User.create!(name: 'Steve Gates', email: 'steve@email.com', password: 'password123')
-
     warehouse = Warehouse.create!(
       name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
       address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
@@ -98,9 +101,9 @@ describe 'User views own orders' do
       full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
       email: 'sac@samsung.com'
     )
-
     john_order = Order.create!(
-      warehouse: warehouse, supplier: supplier, user: john, estimated_delivery_date: 10.days.from_now
+      warehouse: warehouse, supplier: supplier, user: john,
+      estimated_delivery_date: 10.days.from_now, status: :pending
     )
 
     # Act

@@ -14,9 +14,7 @@ describe 'User registers a order' do
 
     # Assert
     expect(page).not_to have_content 'Para continuar, faça login ou registre-se.'
-    
     expect(current_path).to eq new_order_path
-
     expect(page).to have_field 'Galpão'
     expect(page).to have_field 'Fornecedor'
     expect(page).to have_field 'Data Prevista de Entrega'
@@ -26,7 +24,6 @@ describe 'User registers a order' do
     it 'should be successful' do
       # Arrange
       user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
       warehouse = Warehouse.create!(
         name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
         address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
@@ -37,7 +34,6 @@ describe 'User registers a order' do
         address: 'Avenida Atlantica, 50', city: 'Maceio', cep: '80000-000',
         area: 50_000
       )
-  
       supplier = Supplier.create!(
         corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
         full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
@@ -48,7 +44,6 @@ describe 'User registers a order' do
         full_address: 'Av das Américas, 1000', city: 'Rio de Janeiro', state: 'RJ',
         email: 'contato@lg.com'
       )
-
       allow(SecureRandom).to receive(:alphanumeric).and_return('ABCDEFGHIJ')
 
       # Act
@@ -60,29 +55,27 @@ describe 'User registers a order' do
 
       select 'SDU | Galpão Rio', from: 'Galpão Destino'
       select 'Samsung | Samsung Electronics LTDA | CNPJ: 43447216000102', from: 'Fornecedor'
-      fill_in 'Data Prevista de Entrega', with: '20/12/2023'
+      fill_in 'Data Prevista de Entrega', with: '20/12/2024'
       click_on 'Enviar'
 
       # Assert
       expect(page).to have_content 'Pedido registrado com sucesso.'
-
-      expect(page).to have_content "Pedido ABCDEFGHIJ"
-      expect(page).to have_content "Usuário Responsável: John Doe <john@email.com>"
-      expect(page).to have_content "Data Prevista de Entrega: 20/12/2023"
+      expect(page).to have_content 'Pedido ABCDEFGHIJ'
+      expect(page).to have_content 'Usuário Responsável: John Doe <john@email.com>'
+      expect(page).to have_content "Data Prevista de Entrega: 20/12/2024"
       expect(page).to have_content "Galpão Destino: SDU | Galpão Rio"
       expect(page).to have_content "Fornecedor: Samsung Electronics LTDA"
+      expect(page).to have_content 'Situação do Pedido: Pendente'
     end
 
     it 'should not be successful with incomplete data' do
       # Arrange
       user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
-
       warehouse = Warehouse.create!(
         name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
         address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
         area: 60_000
       )
-  
       supplier = Supplier.create!(
         corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
         full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
@@ -103,7 +96,6 @@ describe 'User registers a order' do
 
       # Assert
       expect(current_path).to eq orders_path
-
       expect(page).to have_content 'Falha ao registrar o pedido.'
     end
 

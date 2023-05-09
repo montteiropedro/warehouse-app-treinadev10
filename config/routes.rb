@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   resources :product_models, only: [:index, :show, :new, :create]
   resources :orders, only: [:index, :show, :new, :create, :edit, :update] do
     get 'search', on: :collection
+    member do
+      post 'delivered'
+      post 'canceled'
+    end
   end
 end

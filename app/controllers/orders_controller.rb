@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_order_check_user, only: [:show, :edit, :update]
+  before_action :set_order_check_user, only: [:show, :edit, :update, :delivered, :canceled]
 
   def index
     @orders = current_user.orders
@@ -48,6 +48,24 @@ class OrdersController < ApplicationController
   def search
     @code = params[:query]
     @orders = Order.where('code LIKE ?', "%#{@code}%")
+  end
+
+  def delivered
+    if @order.delivered!
+      redirect_to @order, notice: 'Pedido marcado como entregue.'
+    else
+      flash.now[:notice] = 'Falha ao marcar o pedido como entregue.'
+      render :show
+    end
+  end
+
+  def canceled
+    if @order.canceled!
+      redirect_to @order, notice: 'Pedido cancelado com sucesso.'
+    else
+      flash.now[:notice] = 'Falha ao cancelar o pedido.'
+      render :show
+    end
   end
 
   private

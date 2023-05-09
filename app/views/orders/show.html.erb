@@ -2,4 +2,9 @@
 
 <%= render @order %>
 
+<% if @order.pending? %>
+  <%= button_to 'Marcar como Entregue', delivered_order_path(@order) %>
+  <%= button_to 'Cancelar Pedido', canceled_order_path(@order) %>
+<% end %>
+
 <%= link_to 'Editar', edit_order_path(@order) %>
