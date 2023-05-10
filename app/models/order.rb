@@ -7,7 +7,7 @@ class Order < ApplicationRecord
 
   enum status: { pending: 0, delivered: 5, canceled: 9 }
 
-  before_validation :set_code
+  before_validation :set_code, on: :create
 
   validates :code, :estimated_delivery_date, presence: true
   validates :estimated_delivery_date, comparison: { greater_than: Date.today, message: 'precisa ser futura' }
@@ -15,6 +15,6 @@ class Order < ApplicationRecord
   private
 
   def set_code
-    self.code = SecureRandom.alphanumeric(10).upcase
+    self.code = SecureRandom.alphanumeric(10).upcase if self.code.nil?
   end
 end

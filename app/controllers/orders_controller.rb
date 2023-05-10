@@ -52,6 +52,11 @@ class OrdersController < ApplicationController
 
   def delivered
     if @order.delivered!
+      @order.order_items.each do |item|
+        item.quantity.times do
+          StockProduct.create!(order: @order, product_model: item.product_model, warehouse: @order.warehouse)
+        end
+      end
       redirect_to @order, notice: 'Pedido marcado como entregue.'
     else
       flash.now[:notice] = 'Falha ao marcar o pedido como entregue.'
