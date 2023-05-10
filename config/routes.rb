@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :suppliers, only: [:index, :show, :new, :create, :edit, :update]
   resources :product_models, only: [:index, :show, :new, :create]
   resources :orders, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :order_items, only: [:new, :create]
     get 'search', on: :collection
     member do
       post 'delivered'

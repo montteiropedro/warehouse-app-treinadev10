@@ -1,6 +1,6 @@
-<h2><%= t 'activerecord.models.order.one' %> <%= @order.code %></h2>
+<div style="display: flex; align-items: center; gap: 2rem;">
+  <h2><%= t 'activerecord.models.order.one' %> <%= @order.code %></h2>
 
-<div>
   <% if @order.pending? %>
     <%= button_to 'Marcar como Entregue', delivered_order_path(@order) %>
     <%= button_to 'Cancelar Pedido', canceled_order_path(@order) %>
@@ -11,12 +11,17 @@
 
 <%= render @order %>
 
-<h2>Items do Pedido</h2>
+<div style="display: flex; align-items: center; gap: 2rem;">
+  <h2>Items do Pedido</h2>
+  <%= link_to t('.add_item'), new_order_order_item_path(order_id: @order) %>
+</div>
 
-<% if @order.order_items.present? %>
-  <%= @order.order_items.each do |item| %>
-    <span><%= item.quantity %> x <%= item.product_model.name %></span>
+<div style="display: flex; flex-direction: column;">
+  <% if @order.order_items.present? %>
+    <% @order.order_items.each do |item| %>
+      <span><%= item.quantity %> x <%= item.product_model.name %></span>
+    <% end %>
+  <% else %>
+    <p><%= t '.items_not_found_message' %></p>
   <% end %>
-<% else %>
-  <p><%= t '.items_not_found_message' %></p>
-<% end %>
+</div>

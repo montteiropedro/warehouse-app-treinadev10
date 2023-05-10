@@ -1,0 +1,25 @@
+<h1>Novo Item para o Pedido <%= @order.code %></h1>
+
+<% if @order_item.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  
+  <% @order_item.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= form_with model: [@order, @order_item] do |f| %>
+  <div>
+    <%= f.label :product_model_id %>
+    <%= f.collection_select :product_model_id, @product_models, :id, :name, prompt: true %>
+  </div>
+
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <%= f.submit 'Adicionar' %>
+<% end %>
