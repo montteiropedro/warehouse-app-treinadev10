@@ -115,4 +115,51 @@ describe 'User views own orders' do
     expect(current_path).not_to eq order_path(john_order)
     expect(current_path).to eq root_path
   end
+
+  it 'and see order items' do
+    # Arrange
+    user = User.create!(name: 'John Doe', email: 'john@email.com', password: 'password123')
+    supplier = Supplier.create!(
+      corporate_name: 'Samsung Electronics LTDA', brand_name: 'Samsung', registration_number: '43447216000102',
+      full_address: 'Av Paulista, 100', city: 'São Paulo', state: 'SP',
+      email: 'sac@samsung.com'
+    )
+    product_a = ProductModel.create!(
+      name: 'Produto A', sku: 'PA01-SAMSU-XPTO909AA',
+      weight: 8_000, width: 70, height: 45, depth: 10,
+      supplier: supplier
+    )
+    product_b = ProductModel.create!(
+      name: 'Produto B', sku: 'PB02-SAMSU-XPTO909BB',
+      weight: 8_000, width: 70, height: 45, depth: 10,
+      supplier: supplier
+    )
+    product_c = ProductModel.create!(
+      name: 'Produto C', sku: 'PC03-SAMSU-XPTO909CC',
+      weight: 8_000, width: 70, height: 45, depth: 10,
+      supplier: supplier
+    )
+    warehouse = Warehouse.create!(
+      name: 'Galpão Rio', description: 'Galpão do Rio de Janeiro', code: 'SDU',
+      address: 'Avenida do Museu do Amanhã, 1000', city: 'Rio de Janeiro', cep: '20100-000',
+      area: 60_000
+    )
+    order = Order.create!(
+      warehouse: warehouse, supplier: supplier, user: user,
+      estimated_delivery_date: 10.days.from_now, status: :pending
+    )
+    OrderItem.create!(product_model: product_a, order: order, quantity: 18)
+    OrderItem.create!(product_model: product_b, order: order, quantity: 26)
+
+    # Act
+    login_as(user)
+    visit root_path
+    click_on 'Meus Pedidos'
+    click_on order.code
+
+    # Assert
+    expect(page).to have_content 'Items do Pedido'
+    expect(page).to have_content '18 x Produto A'
+    expect(page).to have_content '26 x Produto B'
+  end
 end

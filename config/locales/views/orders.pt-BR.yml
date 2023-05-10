@@ -1,5 +1,7 @@
 pt-BR:
   orders:
+    show:
+      items_not_found_message: 'Este pedido não possui items.'
     new:
       new_order: 'Novo Pedido'
     edit:
