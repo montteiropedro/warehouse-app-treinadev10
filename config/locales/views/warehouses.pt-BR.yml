@@ -1,7 +1,16 @@
 pt-BR:
-  views:
-    warehouses:
+  warehouses:
+    show:
+      delete_button_text: 'Remover'
+      edit_button_text: 'Editar'
+      return_button_text: 'Voltar'
+      product_model_id: Item para Saída
+      product_model: Item para Saída
+      recipient: Destinatário
+      address: Endereço
+    new:
       new_warehouse: 'Novo Galpão'
+    edit:
       edit_warehouse: 'Editar Galpão'
-      delete_warehouse: 'Remover Galpão'
+    
 

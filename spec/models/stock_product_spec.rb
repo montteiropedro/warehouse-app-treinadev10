@@ -64,4 +64,53 @@ RSpec.describe StockProduct, type: :model do
       expect(stock_product.serial_number).to eq serial_number_before_update
     end
   end
+
+  describe '#available?' do
+    it 'should return true if it has a destination' do
+      # Arrange
+      User.new.save!(validate: false)
+      Warehouse.new.save!(validate: false)
+      Supplier.new.save!(validate: false)
+      ProductModel.new(
+        supplier: Supplier.last
+      ).save!(validate: false)
+      Order.new(
+        user: User.last, warehouse: Warehouse.last, supplier: Supplier.last
+      ).save!(validate: false)
+      stock_product = StockProduct.new(
+        order: Order.last, warehouse: Warehouse.last, product_model: ProductModel.last
+      )
+      stock_product.save!(validate: false)
+      stock_product.create_stock_product_destination(recipient: 'John Doe', address: 'Rua dos Americanos, 1000')
+
+      # Act
+      stock_product.available?
+
+      # Assert
+      expect(stock_product).to be_available
+    end
+
+    it 'should return false if it does not have a destination' do
+      # Arrange
+      User.new.save!(validate: false)
+      Warehouse.new.save!(validate: false)
+      Supplier.new.save!(validate: false)
+      ProductModel.new(
+        supplier: Supplier.last
+      ).save!(validate: false)
+      Order.new(
+        user: User.last, warehouse: Warehouse.last, supplier: Supplier.last
+      ).save!(validate: false)
+      stock_product = StockProduct.new(
+        order: Order.last, warehouse: Warehouse.last, product_model: ProductModel.last
+      )
+      stock_product.save!(validate: false)
+
+      # Act
+      stock_product.available?
+
+      # Assert
+      expect(stock_product).not_to be_available
+    end
+  end
 end

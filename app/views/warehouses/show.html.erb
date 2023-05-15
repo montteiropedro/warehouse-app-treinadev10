@@ -1,25 +1,62 @@
-<h2><%= I18n.t 'activerecord.models.warehouse.one' %> <%= @warehouse.code %></h2>
-<h3><%= I18n.t 'activerecord.attributes.warehouse.description' %>: <%= @warehouse.description %></h3>
+<div style='display: flex; align-items: center; gap: .5rem;'>
+  <h2><%= t 'activerecord.models.warehouse.one' %> <%= @warehouse.code %></h2>
+  <p>&lt; <%= @warehouse.description %> &gt;</p>
+</div>
+
+<div style='display: flex; align-items: center; gap: .5rem;'>
+  <%= button_to t('.delete_button_text'), warehouse_path(@warehouse.id), method: :delete %>
+  <%= link_to t('.edit_button_text'), edit_warehouse_path(@warehouse.id) %>
+  <%= link_to t('.return_button_text'), root_path %>
+</div>
 
 <div>
   <dl>
-    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.name' %>:</strong></dt>
+    <dt><strong><%= t 'activerecord.attributes.warehouse.name' %>:</strong></dt>
     <dd><%= @warehouse.name %></dd>
 
-    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.code' %>:</strong></dt>
+    <dt><strong><%= t 'activerecord.attributes.warehouse.code' %>:</strong></dt>
     <dd><%= @warehouse.code %></dd>
 
-    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.city' %>:</strong></dt>
+    <dt><strong><%= t 'activerecord.attributes.warehouse.city' %>:</strong></dt>
     <dd><%= @warehouse.city %></dd>
 
-    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.area' %>:</strong></dt>
+    <dt><strong><%= t 'activerecord.attributes.warehouse.area' %>:</strong></dt>
     <dd><%= number_with_delimiter(@warehouse.area, delimiter: '.') %> m²</dd>
 
-    <dt><strong><%= I18n.t 'activerecord.attributes.warehouse.address' %>:</strong></dt>
+    <dt><strong><%= t 'activerecord.attributes.warehouse.address' %>:</strong></dt>
     <dd><%= @warehouse.address %> - CEP: <%= @warehouse.cep %></dd>
   </dl>
 </div>
 
-<%= button_to 'Remover', warehouse_path(@warehouse.id), method: :delete %>
-<%= link_to 'Editar', edit_warehouse_path(@warehouse.id) %>
-<%= link_to 'Voltar', root_path %>
+<section id='stock-products'>
+  <h2>Itens em Estoque</h2>
+  
+  <div style='display: flex; flex-direction: column; gap: .5rem;'>
+    <% @stocks.each_pair do |product, quantity| %>
+      <span><%= quantity %> x <%= product.name %> (<%= product.sku %>)</span>
+    <% end %>
+  </div>
+</section>
+
+<section id='stock-destination'>
+  <h2>Saída de Estoque</h2>
+  
+  <%= form_with url: warehouse_stock_product_destinations_path(@warehouse) do |f| %>
+    <div>
+      <%= f.label :product_model_id, t('.product_model_id') %>
+      <%= f.collection_select :product_model_id, @product_models, :id, :description, prompt: true  %>
+    </div>
+
+    <div>
+      <%= f.label :recipient, t('.recipient') %>
+      <%= f.text_field :recipient %>
+    </div>
+
+    <div>
+      <%= f.label :address, t('.address') %>
+      <%= f.text_field :address %>
+    </div>
+
+    <%= f.submit 'Confirmar Retirada' %>
+  <% end %>
+</section>

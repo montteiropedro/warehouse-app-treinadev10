@@ -4,7 +4,7 @@ describe 'User edits a warehouse' do
   it 'from warehouse details page' do
     # Arrange
     warehouse = Warehouse.create!(
-      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'GRU',
       address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
       area: 100_000
     )
@@ -21,7 +21,7 @@ describe 'User edits a warehouse' do
 
     expect(page).to have_field 'Nome', with: 'Aeroporto SP'
     expect(page).to have_field 'Descrição', with: 'Galpão destinado para cargas internacionais.'
-    expect(page).to have_field 'Código', with: 'SDU'
+    expect(page).to have_field 'Código', with: 'GRU'
     expect(page).to have_field 'Endereço', with: 'Avenida do Aeroporto, 1000'
     expect(page).to have_field 'Cidade', with: 'Guarulhos'
     expect(page).to have_field 'CEP', with: '15000-000'
@@ -31,7 +31,7 @@ describe 'User edits a warehouse' do
   it 'and should be successful' do
     # Arrange
     warehouse = Warehouse.create!(
-      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'GRU',
       address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
       area: 100_000
     )
@@ -52,9 +52,9 @@ describe 'User edits a warehouse' do
 
     expect(page).to have_content 'Galpão atualizado com sucesso.'
 
+    expect(page).to have_content '< Galpão destinado para cargas internacionais. >'
     expect(page).to have_content 'Nome: Galpão Internacional'
-    expect(page).to have_content 'Descrição: Galpão destinado para cargas internacionais.'
-    expect(page).to have_content 'Código: SDU'
+    expect(page).to have_content 'Código: GRU'
     expect(page).to have_content 'Endereço: Avenida dos Galpões, 500'
     expect(page).to have_content 'Cidade: Guarulhos'
     expect(page).to have_content 'CEP: 16000-000'
@@ -64,7 +64,7 @@ describe 'User edits a warehouse' do
   it 'and should keep required fields' do
     # Arrange
     warehouse = Warehouse.create!(
-      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'GRU',
       address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
       area: 100_000
     )
@@ -92,7 +92,7 @@ describe 'User edits a warehouse' do
   it 'and should be able to return to the initial page' do
     # Arrange
     warehouse = Warehouse.create!(
-      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'SDU',
+      name: 'Aeroporto SP', description: 'Galpão destinado para cargas internacionais.', code: 'GRU',
       address: 'Avenida do Aeroporto, 1000', city: 'Guarulhos', cep: '15000-000',
       area: 100_000
     )

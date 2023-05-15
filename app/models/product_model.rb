@@ -7,4 +7,8 @@ class ProductModel < ApplicationRecord
   validates :sku, length: { is: 20 }
   validates :sku, uniqueness: true
   validates :weight, :width, :height, :depth, numericality: { only_integer: true, greater_than: 0 }
+
+  def description
+    "#{self.name} (#{self.sku})"
+  end
 end
