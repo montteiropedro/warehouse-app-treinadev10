@@ -17,4 +17,10 @@ Rails.application.routes.draw do
       post 'canceled'
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :warehouses, only: [:index, :show, :create]
+    end
+  end
 end
